@@ -1,7 +1,7 @@
  
 # Last Visited
 
-Last Visited is a web application that allows users to keep track of websites they want to remember to visit. It records the number of times a user has visited a particular website and the last time they visited it.
+Last Visited is a simple web app that allows users to keep track of websites they want to remember to visit. It records the number of times a user has visited a particular website and the last time they visited it.
 
 ## Features
 
@@ -14,12 +14,14 @@ Last Visited is a web application that allows users to keep track of websites th
 ### Backend
 
 - Java 
-- Spring Boot 
+- Spring
+  - Boot
   - Web
   - Data JPA
 - MySQL
 - Maven
 - Log4j2
+- JUnit 5
 
 ### Frontend
 
