@@ -7,17 +7,16 @@ a {
     color: aqua;
 }
 
-.details {
+.minusSign {
     color: white;
 }
 
-.details:hover {
+.minusSign:hover {
     color: navy;
     background-color: yellow;
-    content: "Click to show details";
 }
 
-.listPadMarg {
+.list {
     padding: 1.5px;
     margin-left: 1%;
 }
