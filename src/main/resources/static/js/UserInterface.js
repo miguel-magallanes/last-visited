@@ -91,7 +91,7 @@ function displayCat(catData) {
             categoryDiv.id = catHash
             categoryDiv.textContent = `${catName} `
 
-            const deleteSpan = createSpan(`elm${catHash}`, "details", "Click to delete",
+            const deleteSpan = createSpan(`elm${catHash}`, "minusSign", "Click to delete",
                 "[-]", () => confirmDeleteCat(catHash))
             categoryDiv.append(deleteSpan)
             fragment.append(categoryDiv)
@@ -147,22 +147,20 @@ function displayEnterCat() {
 }
 
 function confirmDeleteCat(catId) {
-    // Get the cat/parent div and add text about deleting the cat & its links
     const catDivParent = document.getElementById(catId)
 
     // create a span to hold the delete confirmation text
-    // this span is the second span of the catDivParent
+    // it'll be the second span of the catDivParent
     let deleteCatTextSpan = createSpan(`confirm${catId}`)
 
-    // add the new span to the catDivParent if no child elements exist
     const thirdChild = catDivParent.childNodes[2]
 
-    if (catDivParent.childElementCount < 1 || thirdChild === undefined) {
+    if (catDivParent.childElementCount < 2) { // cat with no links or delete text
         catDivParent.append(deleteCatTextSpan)
-    } else if (thirdChild.nodeName === "LI") {
+    } else if (thirdChild.nodeName === "LI") { // thirdChild is a link
         catDivParent.insertBefore(deleteCatTextSpan, thirdChild)
-    } else {
-        cancel(catId)
+    } else { // thirdChild is delete text span
+        catDivParent.removeChild(thirdChild)
         return
     }
 
@@ -208,7 +206,7 @@ function displayLink(linkData) {
 
             const listItem = document.createElement("li")
             listItem.id = linkId
-            listItem.className = "listPadMarg"
+            listItem.className = "list"
             listItem.title = url
 
             const linkElement = document.createElement("a")
@@ -217,7 +215,7 @@ function displayLink(linkData) {
             linkElement.target = "_blank"
             linkElement.addEventListener("click", () => updateVisits(linkName, url))
 
-            const spanElement = createSpan(`elm${linkId}`, "details", "Click to delete",
+            const spanElement = createSpan(`elm${linkId}`, "minusSign", "Click to delete",
                 "[-]", () => confirmDeleteLink(linkId))
 
             listItem.append(linkElement, ` - ${numVisits} - ${visitTime} `, spanElement)
@@ -266,6 +264,8 @@ function confirmDeleteLink(id) {
         deleteDiv.append(cancelButton)
 
         confirmDelete.append(fragment)
+    } else if (parentElm.childElementCount === 3) {
+        parentElm.removeChild(parentElm.children[2])
     }
 }
 
