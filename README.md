@@ -3,12 +3,6 @@
 
 Last Visited is a simple web app that allows users to keep track of websites they want to remember to visit. It records the number of times a user has visited a particular website and the last time they visited it.
 
-## Features
-
-- Add new websites to the list organized by category
-- View the list of websites and their visit counts
-- See the last time a website was visited
-
 ## Technologies Used
 
 ### Backend
